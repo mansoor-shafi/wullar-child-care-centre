@@ -895,33 +895,29 @@ observeReveal();
 </script>
 
 <script>
-async function submitForm() {
-  const data = {
-    child_name: document.getElementById("childName").value,
-    parent_name: document.getElementById("parentName").value,
-    phone: document.getElementById("phone").value,
-    age: document.getElementById("age").value,
-    message: document.getElementById("message").value
-  };
+document.addEventListener("DOMContentLoaded", function () {
 
-  if (!data.child_name || !data.parent_name || !data.phone || !data.age) {
-    alert("Please fill all required fields ❗");
-    return;
-  }
+  const form = document.querySelector("form");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-  try {
-    const res = await fetch("https://127.0.0.1:5500/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
+      // Fake success (no backend needed)
+      form.style.display = "none";
+
+      const successBox = document.createElement("div");
+      successBox.innerHTML = `
+        <div style="text-align:center; padding:20px;">
+          <h2 style="color:green;">✅ Admission Submitted Successfully</h2>
+          <p>We will contact you soon.</p>
+        </div>
+      `;
+
+      form.parentNode.appendChild(successBox);
     });
-
-    const result = await res.json();
-    alert(result.message);
-  } catch (error) {
-    alert("Server error ❌ Make sure backend is running");
   }
-}
+
+});
 </script>
 
 </body>
