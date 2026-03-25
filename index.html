@@ -920,17 +920,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 <script>
+<script>
 document.addEventListener("DOMContentLoaded", function () {
 
-  // Disable backend calls completely
-  window.fetch = function() {
-    console.log("Backend disabled");
-    return Promise.resolve({
-      json: () => Promise.resolve({ success: true })
-    });
-  };
-
-  // Form handling (demo mode)
   const form = document.querySelector("form");
 
   if (form) {
@@ -940,7 +932,12 @@ document.addEventListener("DOMContentLoaded", function () {
       form.style.display = "none";
 
       const msg = document.createElement("div");
-      msg.innerHTML = "<h2 style='color:green;'>✅ Submitted Successfully</h2>";
+      msg.innerHTML = `
+        <h2 style="color:green; text-align:center;">
+          ✅ Application Submitted Successfully
+        </h2>
+        <p style="text-align:center;">We will contact you soon.</p>
+      `;
 
       form.parentNode.appendChild(msg);
     });
